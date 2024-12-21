@@ -18,7 +18,7 @@ A aplicação utiliza o **Laravel** e conta com containers para **PHP 8.1**, **N
 
 1. **Clone o repositório**:
     ```bash
-    git clone <repository-url>
+    git clone git@github.com:AndreGregoletto/appAuditoria.git
     cd docker_laravel
     ```
 
@@ -40,10 +40,6 @@ A aplicação utiliza o **Laravel** e conta com containers para **PHP 8.1**, **N
     ```
 
 5. **Realize ajustes finais dentro do container**:
-    - Gere a chave da aplicação:
-      ```bash
-      php artisan key:generate
-      ```
     - Ajuste permissões:
       ```bash
       chmod -R 777 storage bootstrap/cache
