@@ -7,10 +7,12 @@ RUN apt-get update && apt-get install -y \
     docker-php-ext-install pdo_mysql zip
 
 # Verificar e instalar o PHP caso necessário
-RUN if ! php -v > /dev/null 2>&1; then \
+RUN apt-get update && apt-get install -y \
+    curl zip unzip git software-properties-common && \
+    apt-get clean && \
     add-apt-repository ppa:ondrej/php && \
-    apt-get update && apt-get install -y php8.1 php8.1-fpm; \
-    fi
+    apt-get update && apt-get install -y php8.1 php8.1-fpm php8.1-cli php8.1-mysql && \
+    apt-get clean
 
 # Instalar o Composer globalmente
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
