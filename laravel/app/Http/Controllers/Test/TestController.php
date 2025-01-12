@@ -4,18 +4,24 @@ namespace App\Http\Controllers\Test;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TestController extends Controller
 {
     public function getFileXls(Request $request)
     {
 
-        $file = $request->file('arquivo')->getRealPath();
-        $content = file_get_contents($file);
-    
-        // Tenta converter o conteúdo para UTF-8
-        $utf8Content = mb_convert_encoding($content, 'UTF-8', 'auto');
-    
-        return response()->json(['data' => $utf8Content]);
+        if ($request->hasFile('arquivo')) {
+            $file = $request->file('arquivo');
+            
+            $data = Excel::toArray([], $file);
+
+            $excelData = $data[0];
+
+            return response()->json(['data' => $excelData]);
+        }
+
+        return response()->json(['error' => 'No file uploaded'], 400);
+        
     }
 }

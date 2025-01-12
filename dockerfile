@@ -1,16 +1,19 @@
 # Base image do PHP com FPM
 FROM php:8.1-fpm
 
-# Instalar dependências do sistema
-RUN apt-get update && apt-get install -y \
-    zip unzip git curl libzip-dev && \
-    docker-php-ext-install pdo_mysql zip
+# Habilitar repositórios adicionais
+RUN echo "deb http://deb.debian.org/debian bookworm main" > /etc/apt/sources.list.d/debian.list
 
-# Verificar e instalar o PHP caso necessário
-RUN if ! php -v > /dev/null 2>&1; then \
-    add-apt-repository ppa:ondrej/php && \
-    apt-get update && apt-get install -y php8.1 php8.1-fpm; \
-    fi
+# Instalar dependências do sistema com diagnóstico detalhado
+RUN apt-get update --fix-missing && apt-get install -y --no-install-recommends \
+    zip unzip git curl libzip-dev libxml2-dev libgd-dev pkg-config build-essential && \
+    apt-get clean
+
+# Instalar o pacote oniguruma-dev com um método alternativo (se necessário)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libonig-dev && \
+    docker-php-ext-install pdo_mysql zip mbstring xml gd && \
+    apt-get clean
 
 # Instalar o Composer globalmente
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -26,6 +29,9 @@ RUN if [ ! -f ".env" ] && [ -f ".env.example" ]; then cp .env.example .env; fi
 
 # Instalar as dependências do Laravel via Composer
 RUN if [ -f "composer.json" ]; then composer install --optimize-autoloader --no-dev; fi
+
+# Instalar o pacote maatwebsite/excel versão 3.1
+RUN composer require maatwebsite/excel:^3.1
 
 # Gerar a chave de aplicação do Laravel
 RUN if [ -f "artisan" ]; then php artisan key:generate; fi
