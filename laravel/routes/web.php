@@ -19,3 +19,7 @@ Route::get('/', function () {
 });
 
 Route::post('/import', [TestController::class, 'getFileXls'])->name('import');
+
+Route::get('/test', function () {	
+    return view('components.layout-default');
+});

@@ -13,9 +13,16 @@
         >
         <title>{{ env('APP_NAME') }}</title>
     </head>
-    <body>
+    <body class="bg-body-tertiary">
+        {{-- NAVBAR --}}
+        @include('components.navbar')
+        {{-- NAVBAR --}}
 
-        {{ $slot }}
+        {{-- {{ $slot }} --}}
+
+        {{-- FOOTER --}}
+        @include('components.footer')
+        {{-- FOOTER --}}
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script 
