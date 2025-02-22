@@ -27,8 +27,8 @@
         </div>
         <form class="d-flex" role="search">
             <ul class="navbar-nav align-items-center">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Nome de Usuario</a>
+                <li class="nav-item dropdown me-2">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ Auth::user()->name }}</a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">Meu Plano</a></li>
                         <li><a class="dropdown-item" href="#">Editar Perfil</a></li>
@@ -40,8 +40,8 @@
                         </li>
                     </ul>
                 </li>
-                <li>
-                    <img src="https://picsum.photos/id/237/50/50" class="img-fluid rounded-5" alt="..." width="60" height="60">
+                <li class="me-4">
+                    <img src="https://picsum.photos/id/237/50/50" class="img-fluid rounded-5" alt="..." width="50" height="50">
                 </li>
             </ul>
         </form>
