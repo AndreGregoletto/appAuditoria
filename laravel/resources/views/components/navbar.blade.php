@@ -33,13 +33,20 @@
                         <li><a class="dropdown-item" href="#">Meu Plano</a></li>
                         <li><a class="dropdown-item" href="#">Editar Perfil</a></li>
                         <li><a class="dropdown-item disabled" href="#"><hr></a></li>
-                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                        <li>
+                            <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                Logout
+                            </a>    
+                        </li>
                     </ul>
                 </li>
                 <li>
                     <img src="https://picsum.photos/id/237/50/50" class="img-fluid rounded-5" alt="..." width="60" height="60">
                 </li>
             </ul>
+        </form>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
         </form>
     </div>
 </nav>

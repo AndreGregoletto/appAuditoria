@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('username');
             $table->string('cpf');
             $table->string('cellphone');
-            $table->string('image');
-            $table->string('status');
+            $table->string('image')->nullable();
+            $table->integer('status')->default(1);	
             $table->rememberToken();
             $table->timestamps();
         });

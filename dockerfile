@@ -33,6 +33,9 @@ RUN if [ -f "composer.json" ]; then composer install --optimize-autoloader --no-
 # Instalar o pacote maatwebsite/excel versão 3.1
 RUN composer require maatwebsite/excel:^3.1
 
+# Instalar o Sanctum para garantir que ele esteja presente
+RUN composer require laravel/sanctum
+
 # Gerar a chave de aplicação do Laravel
 RUN if [ -f "artisan" ]; then php artisan key:generate; fi
 

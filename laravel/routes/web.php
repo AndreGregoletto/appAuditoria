@@ -20,4 +20,9 @@ Route::get('/test', function () {
     return view('components.layout-default');
 });
 
-require_once __DIR__ . '/navbar.php';
+Route::middleware('auth')->group(function () {
+    
+    require_once __DIR__ . '/navbar.php';
+});
+
+require_once __DIR__ . '/auth.php';
