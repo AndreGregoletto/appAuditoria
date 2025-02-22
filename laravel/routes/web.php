@@ -14,12 +14,10 @@ use App\Http\Controllers\Test\TestController;
 |
 */
 
-Route::get('/', function () {
-    return view('testView');
-});
-
 Route::post('/import', [TestController::class, 'getFileXls'])->name('import');
 
 Route::get('/test', function () {	
     return view('components.layout-default');
 });
+
+require_once __DIR__ . '/navbar.php';
