@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\User\StoreUserRequest;
+use App\Http\Requests\User\UpdateUserRequest;
 use App\Models\User;
 
 class UserController extends Controller
@@ -45,7 +46,7 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // dd($id);
     }
 
     /**
@@ -53,15 +54,24 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $oUser = User::find(auth()->user()->id);
+        return view('user.editUser', compact('oUser'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateUserRequest $request, string $id)
     {
-        //
+        if($id != auth()->user()->id){
+            return $this->edit(auth()->user()->id);
+        }
+
+        $aUser = $request->validated();
+        $oUser = User::find($id);
+        $oUser->update($aUser);
+
+        return $this->edit($id);
     }
 
     /**

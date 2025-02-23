@@ -23,6 +23,7 @@ Route::get('/test', function () {
 Route::middleware('auth')->group(function () {
     
     require_once __DIR__ . '/navbar.php';
+    require_once __DIR__ . '/user.php';
 });
 
 require_once __DIR__ . '/auth.php';
