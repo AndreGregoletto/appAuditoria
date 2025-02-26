@@ -16,7 +16,7 @@
                             <input type="text" class="form-control" placeholder="Nome" aria-label="Nome" aria-describedby="basic-addon1" name="name" value="{{ $oUser->name }}">
                         </div>
                     </div>
-    
+
                     <!-- Campo Email -->
                     <div class="col-12">
                         <div class="input-group mb-3">
@@ -29,7 +29,7 @@
                             <input type="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1" name="email" value="{{ $oUser->email }}">
                         </div>
                     </div>
-    
+
                     <!-- Campo Login (Username) -->
                     <div class="col-12">
                         <div class="input-group mb-3">
@@ -79,11 +79,11 @@
                             </div>
                         @endif
                     </div>
-                    
+
                     <div class="col-12">
-                        <button type="button" class="btn btn-secondary w-100">Alterar Senha</button>
+                        <button type="button" class="btn btn-secondary w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">Alterar Senha</button>
                     </div>
-                    
+
                     <!-- Botões -->
                     <div class="col-12 mt-2">
                         <button type="submit" class="btn btn-primary w-100">Alterar Perfil</button>
@@ -93,5 +93,6 @@
             </div>
         </div>
     </form>
+    @include('components.modal-new-password')
 </x-layout-default>
 {{-- margin-top: 20px !important; --}}
